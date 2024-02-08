@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Blog Post</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static './css/styles.css' %}">
+</head>
+<body>
+
+<h2>Registration page</h2>
+
+<form method="post" action="{% url 'registration' %}">
+    {% csrf_token %}
+
+    <br>
+
+    <label for="username">username</label>
+    <input type="text" id="id_username" name="username" required>
+
+    <br>
+
+    <label for="email">email</label>
+    <input type="text" id="id_email" name="email" required>
+
+    <br>
+
+    <label for="password">password</label>
+    <input type="text" id="id_password" name="password" required>
+
+    <br>
+    <button type="submit">Create New User</button>
+</form>
+
+</body>
+</html>
