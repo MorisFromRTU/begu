@@ -19,5 +19,4 @@ from django.urls import path, include
 
 urlpatterns = [
     path('begu/', include('begu.urls')),
-    path('begu/', include('begu.urls')),
 ]
