@@ -1,4 +1,5 @@
 from django import forms
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
 from .models import Customer
 
@@ -17,6 +18,11 @@ class RegistrationForm(forms.ModelForm):
             email=self.cleaned_data["email"],
             password=self.cleaned_data["password"]
         )
-        # Затем создаем клиента и связываем его с пользователем
         customer = Customer.objects.create(user=user)
         return customer
+
+class LoginForm(AuthenticationForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['username'].label = 'Никнейм'
+        self.fields['password'].label = 'Пароль'

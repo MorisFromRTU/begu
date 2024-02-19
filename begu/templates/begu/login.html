@@ -10,12 +10,19 @@
 <body>
 
 <div class="container">
-    <form method="post" action="{% url 'registration' %}" class="registration-form">
+    <form method="post" action="{% url 'login' %}" class="registration-form">
         {% csrf_token %}
-        <h2>Регистрация</h2> 
+        <h2>Войти</h2> 
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
         {{ form.as_p }}
 
-        <button type="submit" class="submit-button">Зарегестрироваться</button>
+        <button type="submit" class="submit-button">Войти</button>
     </form>
 </div>
 
