@@ -29,6 +29,7 @@ def registration(request):
 
 def user_login(request):
     if request.method == 'POST':
+        list(messages.get_messages(request))
         form = LoginForm(request, data=request.POST)
         if form.is_valid():
             username = form.cleaned_data['username']
@@ -38,7 +39,8 @@ def user_login(request):
                 login(request, user)
                 return redirect('main')
             else:
-                messages.error(request, "Неверное имя пользователя или пароль.")
+                print(user)
+                
     else:
         form = LoginForm()
 

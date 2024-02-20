@@ -37,16 +37,17 @@ button:hover {
 }
 
 .form-container {
-    width: 400px; /* Ширина контейнера */
-    margin: 0 auto; /* Центрирование по горизонтали */
-    padding: 20px; /* Внутренний отступ контейнера */
-    border: 1px solid #ccc; /* Граница контейнера */
-    border-radius: 5px; /* Скругление углов контейнера */
-    background-color: #f9f9f9; /* Цвет фона контейнера */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Тень контейнера */
+    width: 400px;
+    margin: 0 auto; 
+    padding: 20px; 
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+    background-color: #f9f9f9; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
 }
 
 .registration-form {
+    min-width: 400px;
     margin-top: 20px;
 }
 
@@ -72,5 +73,12 @@ button:hover {
     border-radius: 5px;
 }
 
-
-
+.errorlist {
+    list-style: none; 
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    color: #721c24;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+}

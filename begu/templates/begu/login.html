@@ -10,13 +10,13 @@
 <body>
 
 <div class="container">
-    <form method="post" action="{% url 'login' %}" class="registration-form">
+    <form method="post" action="{% url 'user_login' %}" class="registration-form">
         {% csrf_token %}
         <h2>Войти</h2> 
         {% if messages %}
-            <ul>
+            <ul class="error-message">
                 {% for message in messages %}
-                    <li>{{ message }}</li>
+                <li>{{ message }}</li>
                 {% endfor %}
             </ul>
             {% endif %}
