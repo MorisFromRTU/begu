@@ -2,10 +2,14 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from .forms import RegistrationForm, LoginForm
-from django.core.exceptions import ValidationError
+from .models import Product
+
+def product_list(request):
+    products = Product.objects.all()
+    return {'products': products}
 
 def main(request):
-    return render(request, 'begu/main.html')
+    return render(request, 'begu/main.html', product_list(request))
 
 # def registration(request):
 #     if request.method == 'POST':
