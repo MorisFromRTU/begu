@@ -28,9 +28,12 @@
                     <li class="product-item">
                         <div class="product-details">
                             <h2 class="product-name">{{ product.name }}</h2>
+                            {% if product.image %}
+                                <img class="product-image" src="{{ product.image.url }}" alt="{{ product.name }}">
+                            {% endif %}
                             <p class="product-price">${{ product.price }}</p>
                             <p class="product-description">{{ product.short_description }}</p>
-                            <p class="product-category">Category: {{ product.category.name }}</p>
+                            <p class="product-category">Brand: {{ product.category.name }}</p>
                             <p class="product-quantity">Available Quantity: {{ product.available_quantity }}</p>
                         </div>
                     </li>
