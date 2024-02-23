@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from .forms import RegistrationForm, LoginForm
@@ -49,3 +49,7 @@ def user_login(request):
         form = LoginForm()
 
     return render(request, 'begu/login.html', {'form': form})
+
+def product_detail(request, product_id):
+    product = get_object_or_404(Product, pk=product_id)
+    return render(request, 'begu/product_detail.html', {'product': product})
