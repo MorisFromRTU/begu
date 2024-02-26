@@ -1,3 +1,8 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 body{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -101,15 +106,11 @@ ul {
 }
 
 .image-detail {
-    max-width: 600px; 
-    height: auto; 
-    margin-right: 20px; 
-    float: center; 
-}
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    max-width: 100%; 
+    min-width: 300px;/* Изображение будет масштабироваться по ширине контейнера */
+    height: auto; /* Сохраняем пропорции изображения */
+    margin-right: 20px; /* Отступ справа, если необходим */
+    float: center; /* Может вызвать проблемы, лучше использовать flexbox или другие методы центрирования */
 }
 
 
@@ -137,10 +138,11 @@ ul {
 }
 
 .navbar-nav {
+    height: 40px;
     list-style: none;
-    /* display: flex;
+    display: flex;
     flex-wrap: wrap;
-    justify-content: space-around; */
+    justify-content: space-around;
 }
 
 .navbar-nav .nav-item {
@@ -161,11 +163,13 @@ ul {
     display: flex;
 }
 .left-block {
-    width: 60%; 
+    min-width: 400px;
+    width: 50%; 
     float: left; 
 }
 
 .right-block {
+    width: 50%;
     display: flex;
     align-items: center; 
     justify-content: center; 
@@ -186,4 +190,43 @@ ul {
 
 .details_description p:last-child {
     font-style: italic;
+}
+
+.sizes-container {
+    /* position: sticky;
+    max-width: 396px;
+    margin: 0px auto;
+    top: 0px;
+    max-height: 100vh;
+    overflow: hidden; */
+}
+
+.sizes-list {
+    display: grid;
+    margin: auto;
+    padding: 0px 2px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    max-width: 430px;
+}
+
+.size-item {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    height: 45px;
+    color: rgb(26, 26, 26);
+    text-align: center;
+    cursor: pointer;
+    letter-spacing: 0.0857143rem;
+    line-height: 20px;
+    font-weight: 400;
+    width: 100%;
+    box-shadow: rgb(238, 238, 238) 0px 0px 0px 1px;
+}
+
+.size-item:hover{
+    font-weight: bold;
 }

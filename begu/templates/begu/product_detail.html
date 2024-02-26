@@ -27,21 +27,32 @@
                 {% if product.image %}
                     <img class="image-detail" src="{{ product.image.url }}" alt="{{ product.name }}">
                 {% endif %}
-                
-                
-                
             </div>
         </div>
 
         <div class="right-block">
+            
+            
             <div class="details_description">
                 <h1> {{ product.name }} </h1>
                 <p class="deatiled_price"> {{ product.price }} </p>
-                <p>{{ product.category }}</p>
-                <p>{{ product.description }}</p>
+                <p>{{ product.category.name }}</p>
+                <div class="sizes-container">
+                    <div class="sizes-list">
+                        {% for size in product.sizes %}
+                        <div class="size-item">
+                            {{ size }}
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <p>{{ product.short_description }}</p>
             </div>
                 
+                               
         </div>
+                
+    </div>
         
     </div>
     
