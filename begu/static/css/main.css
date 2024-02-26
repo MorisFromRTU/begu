@@ -11,18 +11,45 @@ body{
     height: 100vh;
 }
 
+.input_container{
+    width: 60%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"] {
+    width: 60%;
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid #333;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+
+
 a{
     text-decoration: none;
 }
 
 .product_page{
-    max-width: 60%;
+    max-width: 55%;
     margin: 0 auto;
 }
-.container{
-    min-width: 800px;
-    margin: auto 0;
-}
+
+
 h1 {
     color: #333;
 }
@@ -63,15 +90,14 @@ ul {
     margin-bottom: 10px;
 }
 .product-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    list-style-type: none;
-    padding: 0;
+    margin: 0 auto;
+    column-gap: 24px; /* Определяем промежуток между колонками */
+    display: grid; /* Используем grid layout */
+    grid-template-columns: repeat(3, 1fr); 
 }
 
 .product-item {
-    max-width: 300px;
+    max-width: 200px;
     padding: 20px;
     margin-bottom: 20px;
     border-radius: 5px;
@@ -99,9 +125,8 @@ ul {
 }
 
 .product-image {
-    max-width: 200px; 
+    max-width: 160px; 
     height: auto; 
-    margin-right: 20px; 
     float: center; 
 }
 
@@ -133,12 +158,11 @@ ul {
 }
 .navbar-brand a {
     color: #fff; 
-    font-size: 24px; 
+    font-size: 20px; 
     text-decoration: none; 
 }
 
 .navbar-nav {
-    height: 40px;
     list-style: none;
     display: flex;
     flex-wrap: wrap;
@@ -155,7 +179,7 @@ ul {
 }
 
 .nav-item a {
-    font-size: 24px; 
+    font-size: 18px; 
     color: #d4cdcd;
 }
 
