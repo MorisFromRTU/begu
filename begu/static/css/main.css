@@ -17,10 +17,7 @@ body{
     text-align: center;
 }
 
-input[type="text"],
-input[type="email"],
-input[type="password"],
-input[type="number"] {
+.input_text{
     width: 60%;
     padding: 10px;
     margin: 10px;
@@ -29,10 +26,7 @@ input[type="number"] {
     font-size: 16px;
 }
 
-input[type="text"]:focus,
-input[type="email"]:focus,
-input[type="password"]:focus,
-input[type="number"]:focus {
+.input_text:hover{
     outline: none;
     border-color: #007bff;
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
@@ -45,7 +39,7 @@ a{
 }
 
 .product_page{
-    max-width: 55%;
+    display: flex;
     margin: 0 auto;
 }
 
@@ -132,10 +126,10 @@ ul {
 
 .image-detail {
     max-width: 100%; 
-    min-width: 300px;/* Изображение будет масштабироваться по ширине контейнера */
-    height: auto; /* Сохраняем пропорции изображения */
-    margin-right: 20px; /* Отступ справа, если необходим */
-    float: center; /* Может вызвать проблемы, лучше использовать flexbox или другие методы центрирования */
+    min-width: 300px;
+    height: auto; 
+    margin-right: 20px;
+    float: center;
 }
 
 
@@ -253,4 +247,103 @@ ul {
 
 .size-item:hover{
     font-weight: bold;
+}
+
+.container {
+    display: flex;
+}
+
+.filters {
+    padding: 20px;
+    border-radius: 5px;
+    margin: 0 20px;
+}
+
+.filters h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.filters form {
+    display: flex;
+    flex-direction: column;
+}
+
+.filters label {
+    font-size: 16px;
+    margin-bottom: 5px;
+    color: #666;
+}
+
+.filters select,
+.filters input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.filters button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #483981;
+    color: #fff;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.filters button:hover {
+    background-color: #5f4cac;
+}
+
+
+.product-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.product-list li {
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.product-name {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.product-price {
+    font-size: 16px;
+    color: #007bff;
+    margin-bottom: 5px;
+}
+
+select {
+    width: 200px;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #333;
+}
+
+option {
+    padding: 8px;
+    font-size: 16px;
+}
+
+option:checked {
+    background-color: #007bff;
+    color: #fff;
 }

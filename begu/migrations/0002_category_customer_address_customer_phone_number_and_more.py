@@ -59,7 +59,6 @@ class Migration(migrations.Migration):
                 ('description', models.TextField()),
                 ('price', models.DecimalField(decimal_places=2, max_digits=10)),
                 ('image', models.ImageField(blank=True, null=True, upload_to='products/')),
-                ('available_quantity', models.PositiveIntegerField(default=0)),
                 ('category', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='begu.category')),
             ],
         ),

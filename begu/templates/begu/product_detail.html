@@ -39,9 +39,14 @@
                 <p>{{ product.category.name }}</p>
                 <div class="sizes-container">
                     <div class="sizes-list">
-                        {% for size in product.sizes %}
+                        {% for size, quantity in product.sizes.items %}
                         <div class="size-item">
-                            {{ size }}
+
+                            {% if quantity != 0 %}
+                            <div class="size-item">
+                                {{ size }}
+                            </div>
+                            {% endif %}
                         </div>
                         {% endfor %}
                     </div>

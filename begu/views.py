@@ -2,14 +2,25 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from .forms import RegistrationForm, LoginForm
-from .models import Product
+from .models import Product, Category
 
 def product_list(request):
     products = Product.objects.all()
-    return {'products': products}
+    return products
+
+def category_list(request):
+    categories = Category.objects.all()
+    return categories
+
+def all_sizes(request):
+    sizes = [str(size) for size in [36.0 + i * 0.5 for i in range(18)]]
+    return sizes
 
 def main(request):
-    return render(request, 'begu/main.html', product_list(request))
+    products = product_list(request)
+    categories = category_list(request)
+    sizes = all_sizes(request)
+    return render(request, 'begu/main.html', {'products': products, 'categories': categories, 'sizes': sizes})
 
 # def registration(request):
 #     if request.method == 'POST':
