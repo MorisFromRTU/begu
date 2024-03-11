@@ -32,17 +32,17 @@
                 <form action="{% url 'apply_filters' %}" method="GET">
                     <label for="brand">Brand:</label>
                     <select name="brand" id="brand" multiple size="3">
-                        <option value="">All Brands</option>
+                        <option value="All Brands">All Brands</option>
                         {% for category in categories%}
                         <option value="{{ category.name }}">{{ category.name }}</option>
                         {% endfor %}
                     </select>
     
-                    <label for="size">Size:</label>
+                    <label for="size_label">Size:</label>
                     <select name="size" id="size" multiple>
-                        <option value="">All Sizes</option>
+                        <option value ="All Sizes">All Sizes</option>
                         {% for size in sizes%}
-                        <option value="size">{{ size }}</option>
+                        <option value ="{{ size }}">{{ size }}</option>
                         {% endfor %}
                     </select>
                     

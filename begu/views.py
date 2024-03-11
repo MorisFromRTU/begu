@@ -3,6 +3,9 @@ from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from .forms import RegistrationForm, LoginForm
 from .models import Product, Category
+from django.db.models import IntegerField, Value, F,Q
+from django.db.models.functions import Cast
+
 
 def product_list(request):
     products = Product.objects.all()
@@ -72,15 +75,23 @@ def apply_filters(request):
         min_price = request.GET.get('min_price')
         max_price = request.GET.get('max_price')
         queryset = Product.objects.all()    
-
+        
         if brand:
-            brand_ids = [Category.objects.get(name=item).id for item in brand]
-            queryset = queryset.filter(category__in=brand_ids)
+            if brand != ["All Brands"]:
+                brand_ids = [Category.objects.get(name=item).id for item in brand]
+                queryset = queryset.filter(category__in=brand_ids)
             
         if size:
-            for single_size in size:
-                queryset = queryset.filter(sizes__contains=single_size)
-        
+            if size != ["All Sizes"]:
+                query = Q()
+
+                for single_size in size:
+                    queryset = queryset.annotate(
+                        size_count=Cast(F('sizes__{}'.format(single_size)), IntegerField())
+                    ).filter(size_count__gt=Value(0))
+                    
+                
+                
         if min_price:
             queryset = queryset.filter(price__gte=min_price)
 
