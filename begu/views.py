@@ -64,3 +64,38 @@ def user_login(request):
 def product_detail(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     return render(request, 'begu/product_detail.html', {'product': product})
+
+def apply_filters(request):
+    if request.method == 'GET':
+        brand = request.GET.getlist('brand')  
+        size = request.GET.getlist('size')   
+        min_price = request.GET.get('min_price')
+        max_price = request.GET.get('max_price')
+        queryset = Product.objects.all()    
+
+        if brand:
+            brand_ids = [Category.objects.get(name=item).id for item in brand]
+            queryset = queryset.filter(category__in=brand_ids)
+            
+        if size:
+            for single_size in size:
+                queryset = queryset.filter(sizes__contains=single_size)
+        
+        if min_price:
+            queryset = queryset.filter(price__gte=min_price)
+
+        if max_price:
+            queryset = queryset.filter(price__lte=max_price)
+
+        categories = category_list(request)
+        sizes = all_sizes(request)
+
+        context = {
+            'products': queryset,
+            'categories': categories,
+            'sizes': sizes
+        }
+
+        return render(request, 'begu/main.html', context)
+
+    return render(request, 'begu/main.html')

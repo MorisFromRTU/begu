@@ -29,31 +29,27 @@
         <div class="container">
             <div class="filters">
                 <h2>Filters</h2>
-                <form method="GET">
+                <form action="{% url 'apply_filters' %}" method="GET">
                     <label for="brand">Brand:</label>
-                    <select name="brand" id="brand">
+                    <select name="brand" id="brand" multiple size="3">
                         <option value="">All Brands</option>
                         {% for category in categories%}
-                        <option value="brand1">{{ category.name }}</option>
+                        <option value="{{ category.name }}">{{ category.name }}</option>
                         {% endfor %}
                     </select>
     
-                    <!-- Фильтр по размеру -->
                     <label for="size">Size:</label>
                     <select name="size" id="size" multiple>
                         <option value="">All Sizes</option>
                         {% for size in sizes%}
                         <option value="size">{{ size }}</option>
                         {% endfor %}
-                        <!-- Добавьте другие варианты размеров -->
                     </select>
-    
-                    <!-- Фильтр по цене -->
+                    
                     <label for="price">Price Range:</label>
                     <input type="text" name="min_price" placeholder="Min Price">
                     <input type="text" name="max_price" placeholder="Max Price">
     
-                    <!-- Кнопка для отправки формы -->
                     <button type="submit">Apply Filters</button>
                 </form>
         </div>
