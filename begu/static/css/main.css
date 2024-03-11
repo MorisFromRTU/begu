@@ -237,15 +237,22 @@ ul {
     height: 45px;
     color: rgb(26, 26, 26);
     text-align: center;
-    cursor: pointer;
+    
     letter-spacing: 0.0857143rem;
     line-height: 20px;
     font-weight: 400;
     width: 100%;
     box-shadow: rgb(238, 238, 238) 0px 0px 0px 1px;
 }
+.size-item-exist{
+    cursor: pointer;
+}
+.size-item-null{
+    cursor: default;
+    color: rgb(210, 203, 203) !important;
+}
 
-.size-item:hover{
+.size-item-exist:hover{
     font-weight: bold;
 }
 

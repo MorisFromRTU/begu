@@ -83,15 +83,11 @@ def apply_filters(request):
             
         if size:
             if size != ["All Sizes"]:
-                query = Q()
-
+                size_filter = Q()
                 for single_size in size:
-                    queryset = queryset.annotate(
-                        size_count=Cast(F('sizes__{}'.format(single_size)), IntegerField())
-                    ).filter(size_count__gt=Value(0))
+                    size_filter |= Q(**{"sizes__{}__gt".format(single_size): 0})
+                queryset = queryset.filter(size_filter)
                     
-                
-                
         if min_price:
             queryset = queryset.filter(price__gte=min_price)
 
