@@ -99,5 +99,16 @@ def apply_filters(request):
 
 def search_objects(request):
     if request.method == 'GET':
-        search_text = request.GET.get('search_input')
-        print(search_text)
+        search_text = request.GET.get('search_input').upper()
+        queryset = Product.objects.all()
+        categories = category_list(request)
+        sizes = all_sizes(request) 
+        
+        if search_text:
+            queryset = queryset.filter(name__contains=search_text)
+        context = {
+                'products': queryset,
+                'categories': categories,
+                'sizes': sizes
+            }
+    return render(request, 'begu/main.html', context)
