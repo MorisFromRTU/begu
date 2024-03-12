@@ -25,16 +25,6 @@ def main(request):
     sizes = all_sizes(request)
     return render(request, 'begu/main.html', {'products': products, 'categories': categories, 'sizes': sizes})
 
-# def registration(request):
-#     if request.method == 'POST':
-#         login = request.POST.get('username')
-#         email = request.POST.get('email')
-#         password = request.POST.get('password')
-#         user = User.objects.create(username=login, email=email, password=password)
-#         new_customer = Customer(user=user)
-#         new_customer.save()
-#     return render(request, 'begu/registration.html')
-
 def registration(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
@@ -106,3 +96,8 @@ def apply_filters(request):
         return render(request, 'begu/main.html', context)
 
     return render(request, 'begu/main.html')
+
+def search_objects(request):
+    if request.method == 'GET':
+        search_text = request.GET.get('search_input')
+        print(search_text)
