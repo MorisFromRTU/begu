@@ -3,27 +3,32 @@ from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from .forms import RegistrationForm, LoginForm
 from .models import Product, Category
-from django.db.models import IntegerField, Value, F,Q
-from django.db.models.functions import Cast
-
-
-def product_list(request):
-    products = Product.objects.all()
-    return products
+from django.db.models import Q
+from .utils import get_all_categories, get_all_sizes, get_product_list
 
 def category_list(request):
-    categories = Category.objects.all()
-    return categories
+    return get_all_categories()
 
 def all_sizes(request):
-    sizes = [str(size) for size in [36.0 + i * 0.5 for i in range(18)]]
-    return sizes
+    return get_all_sizes()
+
+def product_list(request):
+    return get_product_list()
+
+def get_context_data(request, queryset):
+    categories = category_list(request)
+    sizes = all_sizes(request)
+    context = {
+        'products': queryset,
+        'categories': categories,
+        'sizes': sizes
+    }
+    return context
 
 def main(request):
     products = product_list(request)
-    categories = category_list(request)
-    sizes = all_sizes(request)
-    return render(request, 'begu/main.html', {'products': products, 'categories': categories, 'sizes': sizes})
+    context = get_context_data(request, products)
+    return render(request, 'begu/main.html', context)
 
 def registration(request):
     if request.method == 'POST':
@@ -47,8 +52,7 @@ def user_login(request):
                 login(request, user)
                 return redirect('main')
             else:
-                print(user)
-                
+                print(user)      
     else:
         form = LoginForm()
 
@@ -59,12 +63,13 @@ def product_detail(request, product_id):
     return render(request, 'begu/product_detail.html', {'product': product})
 
 def apply_filters(request):
+    queryset = Product.objects.all()
+    
     if request.method == 'GET':
         brand = request.GET.getlist('brand')  
         size = request.GET.getlist('size')   
         min_price = request.GET.get('min_price')
         max_price = request.GET.get('max_price')
-        queryset = Product.objects.all()    
         
         if brand:
             if brand != ["All Brands"]:
@@ -84,31 +89,17 @@ def apply_filters(request):
         if max_price:
             queryset = queryset.filter(price__lte=max_price)
 
-        categories = category_list(request)
-        sizes = all_sizes(request)
-
-        context = {
-            'products': queryset,
-            'categories': categories,
-            'sizes': sizes
-        }
-
-        return render(request, 'begu/main.html', context)
-
-    return render(request, 'begu/main.html')
+    context = get_context_data(request, queryset)
+    return render(request, 'begu/main.html', context)
 
 def search_objects(request):
+    queryset = product_list(request)
+
     if request.method == 'GET':
         search_text = request.GET.get('search_input').upper()
-        queryset = Product.objects.all()
-        categories = category_list(request)
-        sizes = all_sizes(request) 
         
         if search_text:
-            queryset = queryset.filter(name__contains=search_text)
-        context = {
-                'products': queryset,
-                'categories': categories,
-                'sizes': sizes
-            }
+            queryset = queryset.filter(name__icontains=search_text)
+    
+    context = get_context_data(request, queryset)
     return render(request, 'begu/main.html', context)

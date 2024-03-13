@@ -2,6 +2,7 @@ from django.db.models.signals import post_migrate
 from django.core.files import File
 from django.dispatch import receiver
 from .models import Product, Category
+from django.contrib.auth.models import User
 import random
 
 @receiver(post_migrate)
@@ -37,4 +38,5 @@ def create_default_products(sender, **kwargs):
                                    sizes = {size: random.randint(0, 10) for size in sizes},
                                    image = 'products/nb1.jpg'
                                    )
-             
+    if not User.objects.filter(username='admin').exists():
+            User.objects.create_superuser('admin', 'admin@example.com', 'password')
